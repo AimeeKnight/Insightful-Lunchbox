@@ -1,0 +1,43 @@
+doctype html
+//[if IE 9]><html class="lt-ie10" lang="en" > <![endif]
+html(class="no-js", lang="en")
+  head
+    meta(charset='utf-8')
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    title Lunch Box
+    link(rel="stylesheet", href="/css/normalize.css")
+    link(rel="stylesheet", href="/css/foundation.css")
+    link(rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/themes/smoothness/jquery-ui.css")
+    link(rel="stylesheet", href="/css/app.css")
+    script(src='/js/vendor/modernizr.js')
+  body
+    .row
+      .small-12.columns.small-centered
+        .panel#header
+          h1 Lunch Box
+
+    .row
+      .small-12.columns.small-centered
+        h3 Search foods
+
+    .row
+      .small-8.columns.expand
+        input#food
+      .small-4.columns.expand
+        button#search Search
+
+    .row
+      .small-6.columns
+        h3 Items
+        #items
+      .small-6.columns
+        h3 Box
+        #box
+
+    script(src='/js/vendor/jquery-1.10.2.js')
+    script(src='//cdnjs.cloudflare.com/ajax/libs/lodash.js/2.4.1/lodash.min.js')
+    script(src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min.js")
+    script(src='/js/vendor/foundation.js')
+    script(src='/js/source/main.js')
+    script
+      $(document).foundation();
