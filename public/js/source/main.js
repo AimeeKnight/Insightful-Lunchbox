@@ -5,6 +5,7 @@
   'use strict';
 
   $(document).ready(init);
+  var total = 0;
 
   function init(){
     $('#search').click(lookUpFood);
@@ -18,10 +19,29 @@
   function showFoods(data){
     console.log(data);
     _.forEach(data.hits, function(hit){
-      var $div = $('<div class="draggable"></div>').draggable();
-      $div.text(hit.fields.item_name);
-      $('#items').append($div);
+      var $nameDiv = $('<div class="draggable"></div>');
+      var $calorieSpan = $('<span class="calorie-span"></span>');
+      $nameDiv.text(hit.fields.item_name + ': ');
+      $calorieSpan.text(hit.fields.nf_calories);
+      $nameDiv.append($calorieSpan);
+      $nameDiv.draggable({
+        stop: calculateCalories
+      });
+      $('#box').droppable({
+        drop: handleDrop
+      });
+      $('#items').append($nameDiv);
     });
+  }
+
+  function calculateCalories(event, ui){
+    var itemCalories = $(this).find('span').text() * 1;
+    total += itemCalories;
+    $('#calories').text(total);
+  }
+
+  function handleDrop(event, ui){
+      
   }
 
 })();
