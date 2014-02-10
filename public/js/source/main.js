@@ -18,18 +18,24 @@
 
   function showFoods(data){
     console.log(data);
+
     _.forEach(data.hits, function(hit){
       var $nameDiv = $('<div class="draggable"></div>');
       var $calorieSpan = $('<span class="calorie-span"></span>');
       $nameDiv.text(hit.fields.item_name + ': ');
       $calorieSpan.text(hit.fields.nf_calories);
       $nameDiv.append($calorieSpan);
+
       $nameDiv.draggable({
-        stop: calculateCalories
+        stop: calculateCalories,
+        revert: true
       });
+
       $('#box').droppable({
-        drop: handleDrop
+        drop: handleDrop,
+        accept: '.draggable'
       });
+
       $('#items').append($nameDiv);
     });
   }
@@ -41,7 +47,11 @@
   }
 
   function handleDrop(event, ui){
-      
+    var $foodDiv = $('<div></div>');
+    var name = ui.draggable.html();
+    console.log(name);
+    $foodDiv.text(name);
+    $('#box').append($foodDiv);
   }
 
 })();
